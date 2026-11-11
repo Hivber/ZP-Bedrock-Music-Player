@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "ZP Music Player - Resource Pack",
+    "description": "Custom OGG tracks for ZP Music Player",
+    "uuid": "b37c12a8-bc7a-42c0-89d5-5d2c2c5c4e10",
+    "version": [
+      1,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "ef6b9f43-7d4d-47e1-8ac0-7a9d4ef3d11a",
+      "version": [
+        1,
+        0,
+        1
+      ]
+    }
+  ]
+}
