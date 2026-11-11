@@ -1,4 +1,4 @@
-import { system, world, CommandPermissionLevel } from "@minecraft/server";
+import { system, world, Player, CommandPermissionLevel, CustomCommandStatus } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 
 /**
@@ -261,11 +261,17 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
       cheatsRequired: false
     },
     (origin) => {
-      const player = origin.sourceEntity ?? origin.initiator;
-      if (!player || player.typeId !== "minecraft:player") return;
+      const player = origin.sourceEntity;
+      if (!(player instanceof Player)) {
+        return {
+          status: CustomCommandStatus.Failure,
+          message: "This command can only be used by a player."
+        };
+      }
 
       // UI operations must be deferred out of the custom-command execution.
       system.run(() => openMusicPlayer(player));
+      return { status: CustomCommandStatus.Success };
     }
   );
 });
