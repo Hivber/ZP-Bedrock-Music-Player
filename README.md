@@ -12,8 +12,8 @@ Minecraft Bedrock Edition 1.26.60 personal music player add-on.
 
 1. Import both packs into Minecraft.
 2. Enable the behavior pack and resource pack in the target world.
-3. Ensure Script API is enabled and supported by the target 1.26.60 runtime.
-4. Run `/music`. The fully qualified command is `/zp_music:music`.
+3. Ensure the target 1.26.60 runtime supports the declared stable Script API modules.
+4. Run `/music` in chat. Minecraft automatically provides the short chat alias for the registered namespaced command; `/zp_music:music` is the fully qualified form.
 
 The command is registered with the Script API custom command registry. It is not implemented by trying to intercept slash commands as chat messages.
 
