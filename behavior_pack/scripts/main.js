@@ -1,4 +1,4 @@
-import { system, CommandPermissionLevel } from "@minecraft/server";
+import { system, world, CommandPermissionLevel } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 
 /**
@@ -271,7 +271,6 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
 });
 
 // Optional chat alias. Do not attempt to catch '/music' in chatSend.
-import { world } from "@minecraft/server";
 world.beforeEvents.chatSend.subscribe(event => {
   if (event.message.trim().toLowerCase() !== "!music") return;
   event.cancel = true;
