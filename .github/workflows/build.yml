@@ -1,0 +1,49 @@
+name: Validate and package add-on
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate manifests and sound definitions
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('behavior_pack/manifest.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('resource_pack/manifest.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('resource_pack/sound_definitions.json','utf8'))"
+
+      - name: Check script syntax
+        run: node --check behavior_pack/scripts/main.js
+
+      - name: Verify custom command registration
+        run: |
+          grep -q 'customCommandRegistry.registerCommand' behavior_pack/scripts/main.js
+          grep -q 'name: "zp_music:music"' behavior_pack/scripts/main.js
+          grep -q 'CommandPermissionLevel.Any' behavior_pack/scripts/main.js
+
+      - name: Package add-on
+        run: |
+          mkdir -p dist
+          (cd behavior_pack && zip -qr ../dist/ZP_Music_Player_BP.mcpack .)
+          (cd resource_pack && zip -qr ../dist/ZP_Music_Player_RP.mcpack .)
+          zip -qr dist/ZP_Music_Player.mcaddon behavior_pack resource_pack
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZP-Music-Player-Bedrock
+          path: dist/*
+          if-no-files-found: error
