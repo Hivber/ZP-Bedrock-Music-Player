@@ -1,0 +1,4 @@
+*.mcaddon
+*.mcpack
+.DS_Store
+Thumbs.db
