@@ -1,0 +1,58 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "ZP Music Player - Behavior Pack",
+    "description": "Personal music player for Bedrock 1.26.60",
+    "uuid": "acfdc32b-3b14-4d2e-8c2a-02db8103e331",
+    "version": [
+      1,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "9e8f9340-1a7e-4b82-9b2d-3ec5d7fba013",
+      "version": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "0e0c8655-4f9b-4b65-b08a-4a7bfe9c9020",
+      "version": [
+        1,
+        0,
+        1
+      ],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "b37c12a8-bc7a-42c0-89d5-5d2c2c5c4e10",
+      "version": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ]
+}
